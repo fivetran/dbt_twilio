@@ -1,0 +1,22 @@
+name: 'twilio_integration_tests'
+version: '0.1.0'
+config-version: 2
+profile: 'integration_tests'
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+
+vars:
+  twilio_schema: twilio_integration_tests
+  twilio_source:
+    twilio_schema: twilio_source_integration_tests
+    twilio_account_history_identifier:  "twilio_account_history_data"
+    twilio_address_identifier:  "twilio_address_data"
+    twilio_incoming_phone_number_identifier:  "twilio_incoming_phone_number_data"
+    twilio_messaging_service_identifier:  "twilio_messaging_service_data"
+    twilio_outgoing_caller_id_identifier:   "twilio_outgoing_caller_id_data"
+    twilio_usage_record_identifier:   "twilio_usage_record_data"
+    call: "{{ fivetran_utils.snowflake_seed_data('twilio_call_data') }}" 
+    message: "{{ fivetran_utils.snowflake_seed_data('twilio_message_data') }}" 
+    

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: twilio_number_overview
+    # description:
+    # tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    # columns:
