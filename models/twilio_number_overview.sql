@@ -9,10 +9,11 @@ inbound_messages as (
     select 
         message_from as phone_number,
         status,
-        count(message_id),
-        sum(price)
+        count(message_id) as total_messages,
+        sum(price) as total_spent
     
     from messages
+    group by 1,2
 ),
 
 outbound_messages as (
@@ -20,10 +21,11 @@ outbound_messages as (
     select 
         message_to as phone_number,
         status,
-        count(message_id),
-        sum(price)
+        count(message_id) as total_messages,
+        sum(price) as total_spent
     
     from messages
+    group by 1,2
 ),
 
 final as (
