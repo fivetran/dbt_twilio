@@ -11,7 +11,7 @@ inbound_messages as (
         status,
         count(message_id) as total_messages,
         sum(price) as total_spent
-    
+
     from messages
     group by 1,2
 ),
@@ -23,7 +23,7 @@ outbound_messages as (
         status,
         count(message_id) as total_messages,
         sum(price) as total_spent
-    
+
     from messages
     group by 1,2
 ),
