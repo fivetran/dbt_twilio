@@ -1,3 +1,5 @@
+-- update to pull from message_enhanced
+
 with messages as (
 
     select *
@@ -14,6 +16,7 @@ inbound_messages as (
 
     from messages
     group by 1,2
+    where direction like '%inbound%'
 ),
 
 outbound_messages as (
@@ -26,6 +29,7 @@ outbound_messages as (
 
     from messages
     group by 1,2
+    where direction like '%outbound%'
 ),
 
 final as (
