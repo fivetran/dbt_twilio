@@ -85,6 +85,7 @@ final as (
         union_messages.direction,
         union_messages.phone_number,
         union_messages.body,
+        {{ dbt.length("body") }} as num_characters,
         union_messages.status,
         union_messages.error_code,
         union_messages.error_message,
