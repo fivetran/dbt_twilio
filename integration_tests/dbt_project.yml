@@ -20,3 +20,24 @@ vars:
     call: "{{ fivetran_utils.snowflake_seed_data('twilio_call_data') }}" 
     message: "{{ fivetran_utils.snowflake_seed_data('twilio_message_data') }}" 
     
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+
+seeds:
+  twilio_source_integration_tests:
+    +column_types:
+      to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+      from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+      forwarded_from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+      phone_number: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+      friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+    twilio_call_data:
+      +enabled: "{{ true if target.type != 'snowflake' else false }}"
+    twilio_message_data:
+      +enabled: "{{ true if target.type != 'snowflake' else false }}"
+    twilio_message_data_snowflake:
+      +enabled: "{{ true if target.type == 'snowflake' else false }}"
+    twilio_call_data_snowflake:
+      +enabled: "{{ true if target.type == 'snowflake' else false }}"
