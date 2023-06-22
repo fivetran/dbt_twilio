@@ -26,7 +26,7 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 
 seeds:
-  twilio_source_integration_tests:
+  twilio_integration_tests:
     +column_types:
       to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
       from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
