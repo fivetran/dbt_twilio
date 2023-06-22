@@ -10,7 +10,6 @@ dispatch:
 vars:
   twilio_schema: twilio_integration_tests
   twilio_source:
-    twilio_schema: twilio_source_integration_tests
     twilio_account_history_identifier:  "twilio_account_history_data"
     twilio_address_identifier:  "twilio_address_data"
     twilio_incoming_phone_number_identifier:  "twilio_incoming_phone_number_data"
