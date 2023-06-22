@@ -2,8 +2,88 @@ version: 2
 
 models:
   - name: twilio_number_overview
-    # description:
-    # tests:
-    #   - dbt_utils.unique_combination_of_columns:
-    #       combination_of_columns:
-    # columns:
+    description: This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
+    columns:
+      - name: phone_number
+        description: The phone number that you have had used messaging with.
+        tests:
+          - unique
+          - not_null
+      - name: total_outbound_messages
+        description: Total number of outbound messages for this phone number. 
+      - name: total_inbound_messages
+        description: Total number of inbound messages for this phone number. 
+      - name: total_accepted_messages
+        description: Total number of accepted messages for this phone number. 
+      - name: total_scheduled_messages
+        description: Total number of scheduled messages for this phone number. 
+      - name: total_canceled_messages
+        description: Total number of canceled messages for this phone number. 
+      - name: total_queued_messages
+        description: Total number of queued messages for this phone number. 
+      - name: total_sending_messages
+        description: Total number of sending messages for this phone number. 
+      - name: total_sent_messages
+        description: Total number of sent messages for this phone number. 
+      - name: total_failed_messages
+        description: Total number of failed messages for this phone number. 
+      - name: total_delivered_messages
+        description: Total number of delivered messages for this phone number. 
+      - name: total_undelivered_messages
+        description: Total number of undelivered messages for this phone number. 
+      - name: total_receiving_messages
+        description: Total number of receiving messages for this phone number. 
+      - name: total_received_messages
+        description: Total number of received messages for this phone number. 
+      - name: total_read_messages
+        description: Total number of read messages for this phone number. 
+      - name: total_messages
+        description: Total number of messages for this phone number. 
+      - name: total_spent
+        description: Total cost or price associated with this phone number.
+
+
+  - name: twilio_message_enhanced
+    description: This model provides additional information of every message sent or received. 
+    columns:
+      - name: message_id
+        description: 
+        test:
+          - unique
+          - not_null
+      - name: account_id
+        description: The unique identifier of the Account that sent or received the message.
+      - name: body
+        description: The text of the message.
+      - name: created_at
+        description: The timestamp indicating when the message was created.
+      - name: date_sent
+        description: The timestamp indicating when the message was sent.
+      - name: week_sent
+        description: The week when the message was sent.
+      - name: month_sent
+        description: The month when the message was sent.
+      - name: direction
+        description: The direction of the message.  Can be inbound for incoming messages, outbound-api for messages initiated by a REST API, outbound-call for messages initiated during a call, or outbound-reply for messages initiated in response to an incoming message.
+      - name: error_code
+        description: The error code associated with the message, if applicable.
+      - name: error_message
+        description: The description of the error_code if your message status is failed or undelivered. If the message was successful, this value is null.
+      - name: phone_number
+        description: The phone number that sent the message, if the direction was inbound. Or the phone number that received the message, if the direction was outbound.
+      - name: messaging_service_id
+        description: The unique identifier of the messaging service.
+      - name: num_media
+        description: The number of media (e.g., images, videos) included in the message.
+      - name: num_segments
+        description: The number of segments the message contains. A message body that is too large to be sent in a single SMS message is segmented and charged as multiple messages. Inbound messages over 160 characters are reassembled when the message is received. Note, when using a Messaging Service to send messages, num_segments will always be 0 in Twilio's response to your API request.
+      - name: price
+        description: The cost of the message.
+      - name: price_unit
+        description: The currency unit for the message cost.
+      - name: status
+        description: The status of the message.
+      - name: updated_at
+        description: The timestamp indicating when the message was last updated.
+      - name: iso_country
+        description: The ISO country code of the customer's address.
