@@ -47,7 +47,7 @@ models:
     description: This model provides additional information of every message sent or received. 
     columns:
       - name: message_id
-        description: 
+        description: The unique identifier for the message.
         test:
           - unique
           - not_null
