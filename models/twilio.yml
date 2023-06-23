@@ -55,6 +55,10 @@ models:
         description: The unique identifier of the Account that sent or received the message.
       - name: body
         description: The text of the message.
+      - name: num_characters
+        description: The number of characters in the message.
+      - name: num_words
+        description: The number of words in the message.
       - name: created_at
         description: The timestamp indicating when the message was created.
       - name: date_sent

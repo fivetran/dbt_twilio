@@ -91,7 +91,6 @@ final as (
         union_messages.body,
         union_messages.num_characters,
         (union_messages.num_characters- {{ dbt.length("body_no_spaces") }}) - 1 as num_words,
-        union_messages.body_no_spaces,
         union_messages.status,
         union_messages.error_code,
         union_messages.error_message,
