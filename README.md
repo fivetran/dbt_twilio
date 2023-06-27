@@ -21,9 +21,9 @@
   - Aggregating key metrics, such as associated revenue, related to each user's interactions with individual campaigns and flows (and organic actions)
   - Aggregating these metrics further, to the grain of campaigns, flows, and individual users
 
-The following table provides a detailed list of all models materialized within this package by default. 
+The following table provides a detailed list of all models materialized within this package by default.  
 
-| **Model**                | **Description**                                                                                                                                |
+| **Model**                |  **Description**                                                                                                                                 |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Twilio__events](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__events.sql)             | Each record represents a unique event in twilio, enhanced with a customizable last-touch attribution model associating events with flows and campaigns. Also includes information about the user who triggered the event. Materialized incrementally by default. |
 | [Twilio__person_campaign_flow](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__person_campaign_flow.sql)             | Each record represents a unique person-campaign or person-flow combination, enriched with sums of the numeric values (i.e. revenue) associated with each kind of conversion, and counts of the number of triggered conversion events. |

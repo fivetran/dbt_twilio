@@ -1,4 +1,4 @@
-with messages as (
+with messages as ( 
 
     select *
     from {{ var('message')}}
@@ -57,12 +57,12 @@ outbound_messages as (
     where direction like '%outbound%'
 ),
 
-union_messages as (
-
-    select * from inbound_messages
-    union all
-    select * from outbound_messages
-),
+union_messages as ( 
+ 
+    select * from inbound_messages 
+    union all 
+    select * from outbound_messages 
+), 
 
 incoming_phone_number as (
 
@@ -80,8 +80,8 @@ final as (
 
     select
         union_messages.message_id,
-        union_messages.messaging_service_id,
-        union_messages.date_sent,
+        union_messages.messaging_service_id, 
+        union_messages.date_sent, 
         cast ({{ dbt.date_trunc("week","date_sent") }} as date) as week_sent,
         cast ({{ dbt.date_trunc("month","date_sent") }} as date) as month_sent,
         union_messages.account_id,
@@ -90,7 +90,7 @@ final as (
         union_messages.phone_number,
         union_messages.body,
         union_messages.num_characters,
-        (union_messages.num_characters- {{ dbt.length("body_no_spaces") }}) - 1 as num_words,
+        (union_messages.num_characters- {{ dbt.length("body_no_spaces") }}) - 1 as num_words, 
         union_messages.status,
         union_messages.error_code,
         union_messages.error_message,
@@ -99,13 +99,13 @@ final as (
         union_messages.price,
         union_messages.price_unit,
         union_messages.updated_at,
-        addresses.iso_country
+        addresses.iso_country 
 
     from union_messages
 
     left join incoming_phone_number
         on union_messages.phone_number = incoming_phone_number.phone_number
-        and union_messages.phone_number = incoming_phone_number.phone_number
+        and union_messages.phone_number = incoming_phone_number.phone_number 
 
     left join addresses
         on incoming_phone_number.address_id = addresses.address_id

@@ -1,15 +1,15 @@
-with message_enhanced as (
+with message_enhanced as ( 
 
     select *
     from {{ ref('twilio_message_enhanced')}}
 )
 
 select
-    phone_number,
-    count(case
-        when direction like '%outbound%'
-        then message_id end)
-        as total_outbound_messages,
+    phone_number, 
+    count(case 
+        when direction like '%outbound%' 
+        then message_id end) 
+        as total_outbound_messages, 
     count(case
         when direction like '%inbound%'
         then message_id end)
@@ -66,4 +66,4 @@ select
     sum(price) as total_spent
 
 from message_enhanced
-group by phone_number
+group by phone_number 
