@@ -61,8 +61,10 @@ models:
         description: The number of words in the message.
       - name: created_at
         description: The timestamp indicating when the message was created.
-      - name: date_sent
-        description: The timestamp indicating when the message was sent.
+      - name: timestamp_sent
+        description: The timestamp_sent indicating when the message was sent.
+      - name: day_sent
+        description: The day indicating when the message was sent.
       - name: week_sent
         description: The week when the message was sent.
       - name: month_sent
@@ -86,8 +88,16 @@ models:
       - name: price_unit
         description: The currency unit for the message cost.
       - name: status
-        description: The status of the message.
+        description: The status of the message. Can be accepted, scheduled, canceled, queued, sending, sent, failed, delivered, undelivered, receiving, received, or read (WhatsApp only). 
       - name: updated_at
         description: The timestamp indicating when the message was last updated.
-      - name: iso_country
-        description: The ISO country code of the customer's address.
+      - name: friendly_name
+        description: A human-readable descriptive name for the messaging service.
+      - name: inbound_method
+        description: The HTTP method Twilio will use to send requests to the inbound request URL of the messaging service.
+      - name: us_app_to_person_registered
+        description: Specifies whether to enable or disable routing inbound messages to the messaging service using US App-to-Person (A2P) routing.
+      - name: use_inbound_webhook_on_number
+        description: Specifies whether to use inbound webhooks for handling incoming messages to the messaging service.
+      - name: use_case
+        description: Specifies the intended use case of the messaging service.

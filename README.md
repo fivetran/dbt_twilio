@@ -15,22 +15,6 @@
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
 
-- Enables you to better understand the efficacy of your email and SMS marketing efforts. It achieves this by:
-  - Performing last-touch attribution on events in order to properly credit campaigns and flows with conversions
-  - Enriching the core event table with data regarding associated users, flows, and campaigns
-  - Aggregating key metrics, such as associated revenue, related to each user's interactions with individual campaigns and flows (and organic actions)
-  - Aggregating these metrics further, to the grain of campaigns, flows, and individual users
-
-The following table provides a detailed list of all models materialized within this package by default. 
-
-| **Model**                | **Description**                                                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Twilio__events](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__events.sql)             | Each record represents a unique event in twilio, enhanced with a customizable last-touch attribution model associating events with flows and campaigns. Also includes information about the user who triggered the event. Materialized incrementally by default. |
-| [Twilio__person_campaign_flow](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__person_campaign_flow.sql)             | Each record represents a unique person-campaign or person-flow combination, enriched with sums of the numeric values (i.e. revenue) associated with each kind of conversion, and counts of the number of triggered conversion events. |
-| [Twilio__campaigns](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__campaigns.sql)             | Each record represents a unique campaign, enriched with user interaction metrics, any revenue attributed to the campaign, and other conversions. |
-| [Twilio__flows](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__flows.sql)             | Each record represents a unique flow, enriched with user interaction metrics, any revenue attributed to the flow, and other conversions. |
-| [Twilio__persons](https://github.com/fivetran/dbt_twilio/blob/main/models/twilio__persons.sql)             | Each record represents a unique user, enriched with metrics around the campaigns and flows they have interacted with, any associated revenue (organic as well as attributed to flows/campaigns), and their recent activity. |
-
 # 🎯 How do I use the dbt package?
 
 ## Step 1: Prerequisites

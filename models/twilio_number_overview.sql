@@ -1,7 +1,9 @@
-with message_enhanced as (
+{% set message_categories = ['accepted', 'scheduled', 'canceled', 'queued', 'sending', 'sent', 'failed', 'delivered', 'undelivered', 'receiving','received', 'read'] %}
+
+with messages as (
 
     select *
-    from {{ ref('twilio_message_enhanced')}}
+    from {{ ref('int_twilio_messages')}}
 )
 
 select
@@ -14,56 +16,16 @@ select
         when direction like '%inbound%'
         then message_id end)
         as total_inbound_messages,
-    count(case 
-        when status like '%accepted%'
-        then message_id end)
-        as total_accepted_messages,
+
+    {% for m in message_categories %}
     count(case
-        when status like '%scheduled%'
+        when status like '{{ m }}'
         then message_id end)
-        as total_scheduled_messages,
-    count(case 
-        when status like '%canceled%'
-        then message_id end)
-        as total_canceled_messages,
-    count(case 
-        when status like '%queued%'
-        then message_id end)
-        as total_queued_messages,
-    count(case 
-        when status like '%sending%'
-        then message_id end)
-        as total_sending_messages,
-    count(case
-        when status like '%sent%'
-        then message_id end)
-        as total_sent_messages,
-    count(case 
-        when status like '%failed%'
-        then message_id end)
-        as total_failed_messages,
-    count(case 
-        when status like 'delivered'
-        then message_id end)
-        as total_delivered_messages,
-    count(case 
-        when status like 'undelivered'
-        then message_id end)
-        as total_undelivered_messages,
-    count(case 
-        when status like '%receiving%'
-        then message_id end)
-        as total_receiving_messages,
-    count(case 
-        when status like '%received%'
-        then message_id end)
-        as total_received_messages,
-    count(case 
-        when status like '%read%'
-        then message_id end)
-        as total_read_messages,
+        as total_{{m}}_messages,
+    {% endfor %}
+    
     count(message_id) as total_messages,
     sum(price) as total_spent
 
-from message_enhanced
-group by phone_number
+from messages
+group by 1

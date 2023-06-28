@@ -1,67 +1,7 @@
 with messages as (
 
     select *
-    from {{ var('message')}}
-),
-
-inbound_messages as (
-
-    select
-        account_id,
-        body,
-        {{ dbt.length("body") }} as num_characters,
-        {{ dbt.replace("body", "' '", "''") }} as body_no_spaces,
-        created_at,
-        date_sent,
-        direction,
-        error_code,
-        error_message,
-        message_from as phone_number,
-        message_id,
-        messaging_service_id,
-        num_media,
-        num_segments,
-        price,
-        price_unit,
-        status,
-        message_to,
-        updated_at
-
-    from messages
-    where direction like '%inbound%'
-),
-
-outbound_messages as (
-
-    select
-        account_id,
-        body,
-        {{ dbt.length("body") }} as num_characters,
-        {{ dbt.replace("body", "' '", "''") }} as body_no_spaces,
-        created_at,
-        date_sent,
-        direction,
-        error_code,
-        error_message,
-        message_to as phone_number,
-        message_id,
-        messaging_service_id,
-        num_media,
-        num_segments,
-        price,
-        price_unit,
-        status,
-        message_from,
-        updated_at
-    from messages
-    where direction like '%outbound%'
-),
-
-union_messages as (
-
-    select * from inbound_messages
-    union all
-    select * from outbound_messages
+    from {{ ref('int_twilio_messages') }}
 ),
 
 incoming_phone_number as (
@@ -76,39 +16,47 @@ addresses as (
     from {{ var('address')}}
 ),
 
+messaging_service as (
+
+    select *
+    from {{ var('messaging_service')}}
+),
+
 final as (
 
     select
-        union_messages.message_id,
-        union_messages.messaging_service_id,
-        union_messages.date_sent,
-        cast ({{ dbt.date_trunc("week","date_sent") }} as date) as week_sent,
-        cast ({{ dbt.date_trunc("month","date_sent") }} as date) as month_sent,
-        union_messages.account_id,
-        union_messages.created_at,
-        union_messages.direction,
-        union_messages.phone_number,
-        union_messages.body,
-        union_messages.num_characters,
-        (union_messages.num_characters- {{ dbt.length("body_no_spaces") }}) - 1 as num_words,
-        union_messages.status,
-        union_messages.error_code,
-        union_messages.error_message,
-        union_messages.num_media,
-        union_messages.num_segments,
-        union_messages.price,
-        union_messages.price_unit,
-        union_messages.updated_at,
-        addresses.iso_country
+        messages.message_id,
+        messages.messaging_service_id,
+        messages.timestamp_sent,
+        cast ({{ dbt.date_trunc("day","timestamp_sent") }} as date) as day_sent,
+        cast ({{ dbt.date_trunc("week","timestamp_sent") }} as date) as week_sent,
+        cast ({{ dbt.date_trunc("month","timestamp_sent") }} as date) as month_sent,
+        messages.account_id,
+        messages.created_at,
+        messages.direction,
+        messages.phone_number,
+        messages.body,
+        messages.num_characters,
+        (messages.num_characters- {{ dbt.length("body_no_spaces") }}) + 1 as num_words,
+        messages.status,
+        messages.error_code,
+        messages.error_message,
+        messages.num_media,
+        messages.num_segments,
+        messages.price,
+        messages.price_unit,
+        messages.updated_at,
+        messaging_service.friendly_name,
+        messaging_service.inbound_method,
+        messaging_service.us_app_to_person_registered,
+        messaging_service.use_inbound_webhook_on_number,
+        messaging_service.use_case
 
-    from union_messages
+    from messages
 
-    left join incoming_phone_number
-        on union_messages.phone_number = incoming_phone_number.phone_number
-        and union_messages.phone_number = incoming_phone_number.phone_number
+    left join messaging_service
+        on messages.messaging_service_id = messaging_service.messaging_service_id
 
-    left join addresses
-        on incoming_phone_number.address_id = addresses.address_id
 )
 
 select *
