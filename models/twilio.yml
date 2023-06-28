@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: twilio_number_overview
+  - name: twilio__number_overview
     description: This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
     columns:
       - name: phone_number
@@ -43,7 +43,7 @@ models:
         description: Total cost or price associated with this phone number.
 
 
-  - name: twilio_message_enhanced
+  - name: twilio__message_enhanced
     description: This model provides additional information of every message sent or received. 
     columns:
       - name: message_id
