@@ -15,6 +15,16 @@
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
 
+The following table provides a detailed list of all models materialized within this package by default. 
+> TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_stripe/#!/overview?g_v=1).
+
+| **model**                          | **description**                                                                                                                                                                                                                              |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [twilio_message_enhanced](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio_message_enhanced)    | This model provides additional information of every message sent or received.                                                                                                         |
+| [twilio_number_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio_number_overview)      | This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
+
+| [account_overview_placeholder]()      |      |
+
 # 🎯 How do I use the dbt package?
 
 ## Step 1: Prerequisites
