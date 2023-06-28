@@ -1,9 +1,10 @@
+
 {% set message_categories = ['accepted', 'scheduled', 'canceled', 'queued', 'sending', 'sent', 'failed', 'delivered', 'undelivered', 'receiving','received', 'read'] %}
 
 with messages as (
 
     select *
-    from {{ ref('int_twilio_messages')}}
+    from {{ ref('int_twilio__messages')}}
 )
 
 select

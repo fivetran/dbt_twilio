@@ -1,7 +1,7 @@
 with messages as (
 
     select *
-    from {{ ref('int_twilio_messages') }}
+    from {{ ref('int_twilio__messages') }}
 ),
 
 incoming_phone_number as (
@@ -16,11 +16,15 @@ addresses as (
     from {{ var('address')}}
 ),
 
+{% if var('using_twilio_messaging_service', True) %}
+
 messaging_service as (
 
     select *
     from {{ var('messaging_service')}}
 ),
+
+{% endif %}
 
 final as (
 

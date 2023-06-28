@@ -12,6 +12,7 @@
 
 
 # Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
+# 📣 What does this dbt package do?
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
 
@@ -40,7 +41,6 @@ dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']
 ```
-
 
 ## Step 2: Install the package
 Include the following Twilio package version in your `packages.yml` file:
@@ -92,6 +92,17 @@ vars:
 ```
 
 </details>
+
+### Enabling/Disabling Models
+
+Your Twilio connector might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
+
+By default, all variables are assumed to be `true`.
+
+```yml
+vars:
+  using_twilio_messaging_service: False # Disable this if not using messaging_service
+```
 
 ## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™  
 <details><summary>Expand for more details</summary>
