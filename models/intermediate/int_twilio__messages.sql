@@ -53,6 +53,7 @@ outbound_messages as (
         status,
         message_from,
         updated_at
+        
     from messages
     where direction like '%outbound%'
 ),
