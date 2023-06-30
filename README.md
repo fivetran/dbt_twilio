@@ -19,12 +19,11 @@
 The following table provides a detailed list of all models materialized within this package by default. 
 > TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_stripe/#!/overview?g_v=1).
 
-| **model**                          | **description**                                                                                                                                                                                                                              |
+| **Model**                          | **Description**                                                                                                                                                                                                                              |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [twilio__message_enhanced](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__message_enhanced)    | This model provides additional information of every message sent or received.                                                                                                         |
-| [twilio__number_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__number_overview)      | This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
-
-| [twilio__account_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__account_overview)      | This model provides aggregate information per each account regarding the Twilio Messages resource.     |
+| [twilio__number_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__number_overview)      | This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.                                                                                                         |
+| [twilio__account_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__account_overview)      | This model provides aggregate information per each account regarding the Twilio Messages resource. |                                                     |
 
 # 🎯 How do I use the dbt package?
 
