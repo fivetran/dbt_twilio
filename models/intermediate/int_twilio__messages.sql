@@ -53,7 +53,7 @@ outbound_messages as (
         status,
         message_from,
         updated_at
-        
+
     from messages
     where direction like '%outbound%'
 ),
@@ -65,4 +65,10 @@ union_messages as (
     select * from outbound_messages
 )
 
-select * from union_messages
+select 
+    *,
+    cast ({{ dbt.date_trunc("day","timestamp_sent") }} as date) as day_sent,
+    cast ({{ dbt.date_trunc("week","timestamp_sent") }} as date) as week_sent,
+    cast ({{ dbt.date_trunc("month","timestamp_sent") }} as date) as month_sent
+
+from union_messages

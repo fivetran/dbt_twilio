@@ -101,3 +101,60 @@ models:
         description: Specifies whether to use inbound webhooks for handling incoming messages to the messaging service.
       - name: use_case
         description: Specifies the intended use case of the messaging service.
+
+
+
+  - name: twilio__account_overview
+    description: This model provides aggregate information per each account regarding the Twilio Messages resource.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - day_sent
+    columns:
+      - name: account_id
+        description: The unique identifier for the account.
+        test:
+          - unique
+          - not_null
+      - name: date_day
+        description: The day of the message activity.
+      - name: date_week
+        description: The week of the message activity.
+      - name: date_month
+        description: The month of the message activity.
+      - name: total_outbound_messages
+        description: Total number of outbound messages for this phone number. 
+      - name: total_inbound_messages
+        description: Total number of inbound messages for this phone number. 
+      - name: total_accepted_messages
+        description: Total number of accepted messages for this phone number. 
+      - name: total_scheduled_messages
+        description: Total number of scheduled messages for this phone number. 
+      - name: total_canceled_messages
+        description: Total number of canceled messages for this phone number. 
+      - name: total_queued_messages
+        description: Total number of queued messages for this phone number. 
+      - name: total_sending_messages
+        description: Total number of sending messages for this phone number. 
+      - name: total_sent_messages
+        description: Total number of sent messages for this phone number. 
+      - name: total_failed_messages
+        description: Total number of failed messages for this phone number. 
+      - name: total_delivered_messages
+        description: Total number of delivered messages for this phone number. 
+      - name: total_undelivered_messages
+        description: Total number of undelivered messages for this phone number. 
+      - name: total_receiving_messages
+        description: Total number of receiving messages for this phone number. 
+      - name: total_received_messages
+        description: Total number of received messages for this phone number. 
+      - name: total_read_messages
+        description: Total number of read messages for this phone number. 
+      - name: total_messages
+        description: Total number of messages for this phone number. 
+      - name: total_spent
+        description: Total cost or price associated with this phone number.
+      - name: price_unit
+        description: The currency unit in which the `price` is measured.
+
