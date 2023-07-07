@@ -5,32 +5,42 @@ with messages as (
 
     select *
     from {{ ref('int_twilio__messages')}}
+),
+
+usage_record as (
+
+    select * 
+    from {{ var('usage_record')}}
 )
 
 select
-    account_id,
-    day_sent as date_day,
-    week_sent as date_week,
-    month_sent as date_month,
+    messages.account_id,
+    messages.day_sent as date_day,
+    messages.week_sent as date_week,
+    messages.month_sent as date_month,
     count(case
-        when direction like '%outbound%'
-        then message_id end)
+        when messages.direction like '%outbound%'
+        then messages.message_id end)
         as total_outbound_messages,
     count(case
-        when direction like '%inbound%'
-        then message_id end)
+        when messages.direction like '%inbound%'
+        then messages.message_id end)
         as total_inbound_messages,
 
     {% for m in message_categories %}
     count(case
-        when status like '{{ m }}'
-        then message_id end)
+        when messages.status like '{{ m }}'
+        then messages.message_id end)
         as total_{{m}}_messages,
     {% endfor %}
     
-    count(message_id) as total_messages,
-    sum(price) as total_spent,
-    price_unit
+    count(messages.message_id) as total_messages,
+    sum(messages.price) as total_messages_spent,
+    messages.price_unit,
+    sum(usage_record.price) as total_account_spent
 
 from messages
+left join usage_record
+    on messages.account_id = usage_record.account_id
+    and messages.day_sent = usage_record.start_date
 group by 1,2,3,4,21

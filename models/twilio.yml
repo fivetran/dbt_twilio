@@ -157,4 +157,6 @@ models:
         description: Total cost or price associated with this account.
       - name: price_unit
         description: The currency unit in which the `price` is measured.
+      - name: total_account_spent
+        description: The total cost or price incurred by account across all resources used.
 
