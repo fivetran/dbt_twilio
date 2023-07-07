@@ -15,9 +15,9 @@ usage_record as (
 
 select
     messages.account_id,
-    messages.day_sent as date_day,
-    messages.week_sent as date_week,
-    messages.month_sent as date_month,
+    messages.date_day,
+    messages.date_week,
+    messages.date_month,
     count(case
         when messages.direction like '%outbound%'
         then messages.message_id end)
@@ -35,12 +35,12 @@ select
     {% endfor %}
     
     count(messages.message_id) as total_messages,
-    trunc(sum(messages.price),2) as total_messages_spent,
+    round(sum(messages.price),2) as total_messages_spent,
     messages.price_unit,
-    trunc(sum(usage_record.price),2) as total_account_spent
+    round(sum(usage_record.price),2) as total_account_spent
 
 from messages
 left join usage_record
     on messages.account_id = usage_record.account_id
-    and messages.day_sent = usage_record.start_date
+    and messages.date_day = usage_record.start_date
 group by 1,2,3,4,21

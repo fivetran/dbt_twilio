@@ -67,8 +67,8 @@ union_messages as (
 
 select 
     *,
-    cast ({{ dbt.date_trunc("day","timestamp_sent") }} as date) as day_sent,
-    cast ({{ dbt.date_trunc("week","timestamp_sent") }} as date) as week_sent,
-    cast ({{ dbt.date_trunc("month","timestamp_sent") }} as date) as month_sent
+    cast ({{ dbt.date_trunc("day","timestamp_sent") }} as date) as date_day,
+    cast ({{ dbt.date_trunc("week","timestamp_sent") }} as date) as date_week,
+    cast ({{ dbt.date_trunc("month","timestamp_sent") }} as date) as date_month
 
 from union_messages

@@ -63,11 +63,11 @@ models:
         description: The timestamp indicating when the message was created.
       - name: timestamp_sent
         description: The timestamp_sent indicating when the message was sent.
-      - name: day_sent
+      - name: date_day
         description: The day indicating when the message was sent.
-      - name: week_sent
+      - name: date_week
         description: The week when the message was sent.
-      - name: month_sent
+      - name: date_month
         description: The month when the message was sent.
       - name: direction
         description: The direction of the message.  Can be inbound for incoming messages, outbound-api for messages initiated by a REST API, outbound-call for messages initiated during a call, or outbound-reply for messages initiated in response to an incoming message.
