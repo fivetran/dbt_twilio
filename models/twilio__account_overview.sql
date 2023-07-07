@@ -35,9 +35,9 @@ select
     {% endfor %}
     
     count(messages.message_id) as total_messages,
-    round( cast(sum(messages.price) as {{ dbt.type_float ()}}), 2) as total_messages_spent,
+    round( cast(sum(messages.price) as {{ dbt.type_numeric ()}}), 2) as total_messages_spent,
     messages.price_unit,
-    round( cast(sum(usage_record.price) as {{ dbt.type_float ()}}), 2) as total_account_spent
+    round( cast(sum(usage_record.price) as {{ dbt.type_numeric ()}}), 2) as total_account_spent
 
 from messages
 left join usage_record
