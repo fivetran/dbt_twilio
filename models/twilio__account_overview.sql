@@ -35,9 +35,9 @@ select
     {% endfor %}
     
     count(messages.message_id) as total_messages,
-    round(sum(messages.price),2) as total_messages_spent,
+    round(sum(messages.price),2.00) as total_messages_spent,
     messages.price_unit,
-    round(sum(usage_record.price),2) as total_account_spent
+    round(sum(usage_record.price),2.00) as total_account_spent
 
 from messages
 left join usage_record
