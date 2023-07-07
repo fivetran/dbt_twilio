@@ -153,7 +153,7 @@ models:
         description: Total number of read messages for this account. 
       - name: total_messages
         description: Total number of messages for this account. 
-      - name: total_spent
+      - name: total_messages_spent
         description: Total cost or price associated with this account.
       - name: price_unit
         description: The currency unit in which the `price` is measured.
