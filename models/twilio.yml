@@ -39,7 +39,7 @@ models:
         description: Total number of read messages for this phone number. 
       - name: total_messages
         description: Total number of messages for this phone number. 
-      - name: total_spent
+      - name: total_spend
         description: Total cost or price associated with this phone number.
 
 
@@ -116,6 +116,12 @@ models:
         description: The unique identifier for account.
         test:
           - not_null
+      - name: account_name
+        description: Friendly name associated with the account.
+      - name: account_status
+        description: The status or state of the account.
+      - name: account_type
+        description: The type or category of the account.
       - name: date_day
         description: The day of the message activity.
         tests:
@@ -154,10 +160,10 @@ models:
         description: Total number of read messages for this account. 
       - name: total_messages
         description: Total number of messages for this account. 
-      - name: total_messages_spent
+      - name: total_messages_spend
         description: Total cost or price associated with this account.
       - name: price_unit
         description: The currency unit in which the `price` is measured.
-      - name: total_account_spent
+      - name: total_account_spend
         description: The total cost or price incurred by account across all resources used.
 

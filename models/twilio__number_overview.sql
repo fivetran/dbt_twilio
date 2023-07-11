@@ -26,7 +26,7 @@ select
     {% endfor %}
     
     count(message_id) as total_messages,
-    sum(price) as total_spent
+    sum(price) as total_spend
 
 from messages
 group by 1
