@@ -57,7 +57,18 @@ vars:
   twilio_database: your_database_name
   twilio_schema: your_schema_name
 ```
-## (Optional) Step 4: Additional configurations
+
+## Step 4: Enabling/Disabling Models
+
+Your Twilio connector might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
+
+By default, all variables are assumed to be `true`.
+
+```yml
+vars:
+  using_twilio_messaging_service: False # Disable this if not using messaging_service
+```
+## (Optional) Step 5: Additional configurations
 
 <details><summary>Expand for configurations</summary>
 
@@ -92,18 +103,7 @@ vars:
 
 </details>
 
-### Enabling/Disabling Models
-
-Your Twilio connector might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
-
-By default, all variables are assumed to be `true`.
-
-```yml
-vars:
-  using_twilio_messaging_service: False # Disable this if not using messaging_service
-```
-
-## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™  
+## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™  
 <details><summary>Expand for more details</summary>
 
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
@@ -124,6 +124,9 @@ packages:
 
     - package: dbt-labs/dbt_utils
       version: [">=1.0.0", "<2.0.0"]
+
+    - package: dbt-labs/spark_utils
+      version: [">=0.3.0", "<0.4.0"]
 ```
 # 🙌 How is this package maintained and can I contribute?
 ## Package Maintenance

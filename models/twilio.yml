@@ -115,10 +115,11 @@ models:
       - name: account_id
         description: The unique identifier for account.
         test:
-          - unique
           - not_null
       - name: date_day
         description: The day of the message activity.
+        tests:
+          - not_null
       - name: date_week
         description: The week of the message activity.
       - name: date_month
