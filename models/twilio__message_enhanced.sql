@@ -48,14 +48,14 @@ final as (
         messages.num_segments,
         messages.price,
         messages.price_unit,
-        messages.updated_at,
+        messages.updated_at
 
         {% if var('using_twilio_messaging_service', True) %}
-        messaging_service.friendly_name,
-        messaging_service.inbound_method,
-        messaging_service.us_app_to_person_registered,
-        messaging_service.use_inbound_webhook_on_number,
-        messaging_service.use_case
+        , messaging_service.friendly_name
+        , messaging_service.inbound_method
+        , messaging_service.us_app_to_person_registered
+        , messaging_service.use_inbound_webhook_on_number
+        , messaging_service.use_case
 
         {% endif %}
 
