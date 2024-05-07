@@ -3,10 +3,6 @@ version: '0.1.1'
 config-version: 2
 profile: 'integration_tests'
 
-dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['spark_utils', 'dbt_utils']
-
 vars:
   twilio_schema: twilio_integration_tests
   twilio_source:
