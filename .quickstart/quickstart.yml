@@ -8,8 +8,6 @@ table_variables:
     - messaging_service
   using_twilio_call:
     - call
-  using_twilio_message:
-    - message
 
 destination_configurations:
   databricks:
