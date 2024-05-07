@@ -69,6 +69,7 @@ vars:
   using_twilio_call: False # Disable this if not using call
   using_twilio_messaging_service: False # Disable this if not using messaging_service
 ```
+
 ## (Optional) Step 5: Additional configurations
 
 <details open><summary>Expand/Collapse configurations</summary>

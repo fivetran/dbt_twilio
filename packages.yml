@@ -4,3 +4,4 @@ packages:
 - git: https://github.com/fivetran/dbt_twilio_source.git
   revision: releases/v0.1.latest
   warn-unpinned: false
+# - local: ../Twilio/dbt_twilio_source

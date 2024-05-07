@@ -1,6 +1,3 @@
-{# Every model in the twilio transform package relies on message data and will be disabled by setting using_twilio_message to False #}
-{{ config(enabled=var('using_twilio_message', True)) }}
-
 {% set message_categories = ['accepted', 'scheduled', 'canceled', 'queued', 'sending', 'sent', 'failed', 'delivered', 'undelivered', 'receiving','received', 'read'] %}
 
 with messages as (
