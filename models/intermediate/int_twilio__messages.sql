@@ -1,3 +1,6 @@
+{# Every model in the twilio transform package relies on message data and will be disabled by setting using_twilio_message to False #}
+{{ config(enabled=var('using_twilio_message', True)) }}
+
 with messages as (
 
     select *
