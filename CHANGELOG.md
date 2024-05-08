@@ -15,7 +15,7 @@
 ## Contributors
 - [@raphaelvarieras](https://github.com/raphaelvarieras) ([PR #5](https://github.com/fivetran/dbt_twilio/pull/5) and [twilio_source PR #5](https://github.com/fivetran/dbt_twilio_source/pull/5)).
 
-*See parallel twilio_source package release [v0.2.0](https://github.com/fivetran/dbt_twilio_source/releases).*
+*See parallel twilio_source package release [v0.2.0](https://github.com/fivetran/dbt_twilio_source/releases), which contains breaking changes.*
 
 # dbt_twilio v0.1.0
 ## Initial Release
