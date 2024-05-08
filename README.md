@@ -47,7 +47,7 @@ Include the following Twilio package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/twilio
-    version: [">=0.1.0", "<0.2.0"]
+    version: [">=0.2.0", "<0.3.0"]
 ```
 ## Step 3: Define database and schema variables
 By default, this package runs using your destination and the `Twilio` schema. If this is not where your Twilio data is (for example, if your Twilio schema is named `twilio_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -94,7 +94,7 @@ models:
 > Note that if your profile does not have permissions to create schemas in your warehouse, you can set each `+schema` to blank. The package will then write all tables to your pre-existing target schema.
 
 ### Change the source table references
-If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
+If an individual source table has a different name than the package expects (but is in the same schema and database as the other tables), add the table name as it appears in your destination to the respective variable:
 
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_twilio/blob/main/dbt_project.yml) variable declarations to see the expected names.
 
@@ -119,7 +119,7 @@ This dbt package is dependent on the following dbt packages. Please be aware tha
 ```yml
 packages:
     - package: fivetran/twilio_source
-      version: [">=0.1.0", "<0.2.0"]
+      version: [">=0.2.0", "<0.3.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]

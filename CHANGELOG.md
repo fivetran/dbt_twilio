@@ -1,4 +1,4 @@
-# dbt_twilio v0.1.1
+# dbt_twilio v0.2.0
 
 ## Bug Fixes
 - Fixed two testing-related typos in `twilio.yml` to conform to the [dbt YAML file JSON schema](https://github.com/dbt-labs/dbt-jsonschema/blob/main/schemas/dbt_yml_files.json#L683) ([PR #5](https://github.com/fivetran/dbt_twilio/pull/5)).
@@ -14,6 +14,8 @@
 
 ## Contributors
 - [@raphaelvarieras](https://github.com/raphaelvarieras) ([PR #5](https://github.com/fivetran/dbt_twilio/pull/5) and [twilio_source PR #5](https://github.com/fivetran/dbt_twilio_source/pull/5)).
+
+*See parallel twilio_source package release [v0.2.0](https://github.com/fivetran/dbt_twilio_source/releases).*
 
 # dbt_twilio v0.1.0
 ## Initial Release
