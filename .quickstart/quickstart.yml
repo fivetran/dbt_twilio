@@ -6,6 +6,8 @@ dbt_versions: ">=1.3.0 <2.0.0"
 table_variables:
   using_twilio_messaging_service:
     - messaging_service
+  using_twilio_call:
+    - call
 
 destination_configurations:
   databricks:

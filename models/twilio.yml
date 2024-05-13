@@ -48,7 +48,7 @@ models:
     columns:
       - name: message_id
         description: The unique identifier for the message.
-        test:
+        tests:
           - unique
           - not_null
       - name: account_id
@@ -114,7 +114,7 @@ models:
     columns:
       - name: account_id
         description: The unique identifier for account.
-        test:
+        tests:
           - not_null
       - name: account_name
         description: Friendly name associated with the account.

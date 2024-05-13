@@ -1,11 +1,7 @@
 name: 'twilio_integration_tests'
-version: '0.1.0'
+version: '0.2.0'
 config-version: 2
 profile: 'integration_tests'
-
-dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['spark_utils', 'dbt_utils']
 
 vars:
   twilio_schema: twilio_integration_tests
@@ -16,9 +12,8 @@ vars:
     twilio_messaging_service_identifier:  "twilio_messaging_service_data"
     twilio_outgoing_caller_id_identifier:   "twilio_outgoing_caller_id_data"
     twilio_usage_record_identifier:   "twilio_usage_record_data"
-    call: "{{ fivetran_utils.snowflake_seed_data('twilio_call_data') }}" 
-    message: "{{ fivetran_utils.snowflake_seed_data('twilio_message_data') }}" 
-    
+    twilio_call_identifier:   "twilio_call_data"
+    twilio_message_identifier:   "twilio_message_data"
 
 dispatch:
   - macro_namespace: dbt_utils
@@ -38,5 +33,7 @@ seeds:
       +enabled: "{{ true if target.type != 'snowflake' else false }}"
     twilio_message_data_snowflake:
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
+      +alias: twilio_message_data
     twilio_call_data_snowflake:
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
+      +alias: twilio_call_data
