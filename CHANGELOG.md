@@ -1,3 +1,10 @@
+# dbt_twilio v0.3.0
+
+> _Note_: This release is a 🚨 **breaking change** 🚨 due to breaking changes introduced in the upstream twilio_source package [v0.3.0](https://github.com/fivetran/dbt_twilio_source/releases/tag/v0.3.0) release, where we explicitly cast the below fields as float types and remove any non-numerical characters. 
+- `queue_time, num_media, num_segments` in addition to the existing float-casted `duration, price, count, usage` fields
+
+- Please be aware if you were expecting string values from these fields.
+
 # dbt_twilio v0.2.0
 
 > _Note_: This release is a 🚨 **breaking change** 🚨 due to breaking changes introduced in the upstream twilio_source package [v0.2.0](https://github.com/fivetran/dbt_twilio_source/releases/tag/v0.2.0) release, in which we have updated the `stg_*_tmp` models to use the `dbt_utils.star` macro instead of a basic `select *` ([PR #6](https://github.com/fivetran/dbt_twilio_source/pull/6)).

@@ -1,10 +1,10 @@
 name: 'twilio_integration_tests'
-version: '0.2.0'
+version: '0.3.0'
 config-version: 2
 profile: 'integration_tests'
 
 vars:
-  twilio_schema: twilio_integration_tests
+  twilio_schema: twilio_integration_tests_1
   twilio_source:
     twilio_account_history_identifier:  "twilio_account_history_data"
     twilio_address_identifier:  "twilio_address_data"
