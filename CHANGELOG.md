@@ -1,9 +1,9 @@
 # dbt_twilio v0.3.0
 
 > _Note_: This release is a 🚨 **breaking change** 🚨 due to breaking changes introduced in the upstream twilio_source package [v0.3.0](https://github.com/fivetran/dbt_twilio_source/releases/tag/v0.3.0) release, where we explicitly cast the below fields as float types and remove any non-numerical characters. 
-- `duration, queue_time, num_media, num_segments, count, duration, price, count, usage` 
+- `queue_time, num_media, num_segments` in addition to the existing float-casted `duration, price, count, usage` fields
 
-Please be aware if you were expecting string values from these fields.
+- Please be aware if you were expecting string values from these fields.
 
 # dbt_twilio v0.2.0
 
