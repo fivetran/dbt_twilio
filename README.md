@@ -12,11 +12,11 @@
 
 
 # Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
-# 📣 What does this dbt package do?
+## What does this dbt package do?
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
 
-The following table provides a detailed list of all models materialized within this package by default. 
+The following table provides a detailed list of all models materialized within this package by default.
 > TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_twilio/#!/overview?g_v=1).
 
 | **Model**                          | **Description**                                                                                                                                                                                                                              |
@@ -25,15 +25,15 @@ The following table provides a detailed list of all models materialized within t
 | [twilio__number_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__number_overview)      | This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.                                                                                                         |
 | [twilio__account_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__account_overview)      | This model provides aggregate information per each account regarding the Twilio Messages resource. |                                                     |
 
-# 🎯 How do I use the dbt package?
+## How do I use the dbt package?
 
-## Step 1: Prerequisites
+### Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
 - At least one Fivetran Twilio connector syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
-### Databricks Dispatch Configuration
+#### Databricks Dispatch Configuration
 If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is required in order for the package to accurately search for macros within the `dbt-labs/spark_utils` then the `dbt-labs/dbt_utils` packages respectively.
 ```yml
 dispatch:
@@ -41,7 +41,7 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-## Step 2: Install the package
+### Step 2: Install the package
 Include the following Twilio package version in your `packages.yml` file:
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
@@ -49,7 +49,7 @@ packages:
   - package: fivetran/twilio
     version: [">=0.3.0", "<0.4.0"]
 ```
-## Step 3: Define database and schema variables
+### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `Twilio` schema. If this is not where your Twilio data is (for example, if your Twilio schema is named `twilio_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -58,7 +58,7 @@ vars:
   twilio_schema: your_schema_name
 ```
 
-## Step 4: Enabling/Disabling Models
+### Step 4: Enabling/Disabling Models
 
 Your Twilio connector might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
 
@@ -70,11 +70,11 @@ vars:
   using_twilio_messaging_service: False # Disable this if not using messaging_service
 ```
 
-## (Optional) Step 5: Additional configurations
+### (Optional) Step 5: Additional configurations
 
 <details open><summary>Expand/Collapse configurations</summary>
 
-### Changing the Build Schema
+#### Changing the Build Schema
 
 By default, this package will build the Twilio final models within a schema titled (`<target_schema>` + `_twilio`), intermediate models in (`<target_schema>` + `_int_twilio`), and staging models within a schema titled (`<target_schema>` + `_stg_twilio`) in your target database. If this is not where you would like your modeled Twilio data to be written to, add the following configuration to your `dbt_project.yml` file:
 
@@ -93,7 +93,7 @@ models:
 
 > Note that if your profile does not have permissions to create schemas in your warehouse, you can set each `+schema` to blank. The package will then write all tables to your pre-existing target schema.
 
-### Change the source table references
+#### Change the source table references
 If an individual source table has a different name than the package expects (but is in the same schema and database as the other tables), add the table name as it appears in your destination to the respective variable:
 
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_twilio/blob/main/dbt_project.yml) variable declarations to see the expected names.
@@ -105,15 +105,15 @@ vars:
 
 </details>
 
-## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™  
+### (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 <details><summary>Expand for more details</summary>
 
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
 
 </details>
 
-# 🔍 Does this package have dependencies?
-This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
+## Does this package have dependencies?
+This dbt package is dependent on the following dbt packages. These dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
     
 ```yml
@@ -130,16 +130,15 @@ packages:
     - package: dbt-labs/spark_utils
       version: [">=0.3.0", "<0.4.0"]
 ```
-# 🙌 How is this package maintained and can I contribute?
-## Package Maintenance
+## How is this package maintained and can I contribute?
+### Package Maintenance
 The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/twilio_source/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_twilio_source/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
 
-## Contributions
-A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions! 
+### Contributions
+A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions.
 
-We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package!
+We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package.
 
-# 🏪 Are there any resources available?
-- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_twilio/issues/new/choose) section to find the right avenue of support for you.
+## Are there any resources available?
+- If you have questions or want to reach out for help, see the [GitHub Issue](https://github.com/fivetran/dbt_twilio/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran or would like to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
-- Have questions or want to be part of the community discourse? Create a post in the [Fivetran community](https://community.fivetran.com/t5/user-group-for-dbt/gh-p/dbt-user-group) and our team along with the community can join in on the discussion!
