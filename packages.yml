@@ -2,5 +2,6 @@ packages:
 # - package: fivetran/twilio_source
 #   version: [">=0.3.0", "<0.4.0"]
 
-
-  - local: ../../dbt_twilio_source
+  - git: https://github.com/fivetran/dbt_twilio_source.git
+    revision: release/0.4.0
+    warn-unpinned: false
