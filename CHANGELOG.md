@@ -1,3 +1,9 @@
+# dbt_twilio v0.4.0
+- Removes the following upstream staging models that are unused downstream, along with their related files and mentions.
+  - `stg_twilio__address`
+  - `stg_twilio__incoming_phone_number`
+  - `stg_twilio__outgoing_caller_id`
+
 # dbt_twilio v0.3.0
 
 > _Note_: This release is a 🚨 **breaking change** 🚨 due to breaking changes introduced in the upstream twilio_source package [v0.3.0](https://github.com/fivetran/dbt_twilio_source/releases/tag/v0.3.0) release, where we explicitly cast the below fields as float types and remove any non-numerical characters. 
