@@ -1,5 +1,5 @@
 name: 'twilio_integration_tests'
-version: '0.3.0'
+version: '0.4.0'
 config-version: 2
 profile: 'integration_tests'
 
@@ -7,10 +7,7 @@ vars:
   twilio_schema: twilio_integration_tests_1
   twilio_source:
     twilio_account_history_identifier:  "twilio_account_history_data"
-    twilio_address_identifier:  "twilio_address_data"
-    twilio_incoming_phone_number_identifier:  "twilio_incoming_phone_number_data"
     twilio_messaging_service_identifier:  "twilio_messaging_service_data"
-    twilio_outgoing_caller_id_identifier:   "twilio_outgoing_caller_id_data"
     twilio_usage_record_identifier:   "twilio_usage_record_data"
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
