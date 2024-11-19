@@ -8,6 +8,9 @@ table_variables:
     - messaging_service
   using_twilio_call:
     - call
+  using_twilio_usage_record:
+    - usage_record
+
 
 destination_configurations:
   databricks:
