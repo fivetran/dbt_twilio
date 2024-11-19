@@ -72,6 +72,8 @@ By default, all variables are assumed to be `true`.
 vars:
   using_twilio_call: False # Disable this if not using call
   using_twilio_messaging_service: False # Disable this if not using messaging_service
+  using_twilio_usage_record: False # Disable this if not using usage_record
+
 ```
 
 ### (Optional) Step 5: Additional configurations

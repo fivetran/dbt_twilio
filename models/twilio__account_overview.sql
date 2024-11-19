@@ -3,20 +3,23 @@
 with messages as (
 
     select *
-    from {{ ref('int_twilio__messages')}}
+    from {{ ref('int_twilio__messages') }}
 ),
 
 account_history as (
 
     select * 
-    from {{ var('account_history')}}
-),
+    from {{ var('account_history') }}
+)
 
+{% if var('using_twilio_usage_record', True) %}
+,
 usage_record as (
 
     select * 
-    from {{ var('usage_record')}}
+    from {{ var('usage_record') }}
 )
+{% endif %}
 
 select
     messages.account_id,
@@ -44,13 +47,18 @@ select
     {% endfor %}
     
     count(messages.message_id) as total_messages,
-    round( cast(sum(messages.price) as {{ dbt.type_numeric ()}}), 2) * -1 as total_messages_spend,
-    round( cast(sum(usage_record.price) as {{ dbt.type_numeric ()}}), 2) as total_account_spend
+    round( cast(sum(messages.price) as {{ dbt.type_numeric() }}), 2) * -1 as total_messages_spend,
+    
+    {% if var('using_twilio_usage_record', True) %}
+    round( cast(sum(usage_record.price) as {{ dbt.type_numeric() }}), 2) as total_account_spend
+    {% endif %}
 
 from messages
+{% if var('using_twilio_usage_record', True) %}
 left join usage_record
     on messages.account_id = usage_record.account_id
     and messages.date_day = usage_record.start_date
+{% endif %}
 left join account_history
     on messages.account_id = account_history.account_id
 
