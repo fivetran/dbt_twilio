@@ -11,7 +11,6 @@ vars:
     twilio_usage_record_identifier:   "twilio_usage_record_data"
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
-    # using_twilio_usage_record: false
 
 dispatch:
   - macro_namespace: dbt_utils

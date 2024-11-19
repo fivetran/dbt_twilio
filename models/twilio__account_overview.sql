@@ -47,10 +47,10 @@ select
     {% endfor %}
     
     count(messages.message_id) as total_messages,
-    round( cast(sum(messages.price) as {{ dbt.type_numeric() }}), 2) * -1 as total_messages_spend,
+    round( cast(sum(messages.price) as {{ dbt.type_numeric() }}), 2) * -1 as total_messages_spend
     
     {% if var('using_twilio_usage_record', True) %}
-    round( cast(sum(usage_record.price) as {{ dbt.type_numeric() }}), 2) as total_account_spend
+    , round( cast(sum(usage_record.price) as {{ dbt.type_numeric() }}), 2) as total_account_spend
     {% endif %}
 
 from messages
