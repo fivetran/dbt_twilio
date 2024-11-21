@@ -1,8 +1,7 @@
 # dbt_twilio v0.4.0
-- Removes the following upstream staging models that are unused downstream, along with their related files and mentions.
-  - `stg_twilio__address`
-  - `stg_twilio__incoming_phone_number`
-  - `stg_twilio__outgoing_caller_id`
+
+## Features
+- Added the ability to disable models related to the `USAGE_RECORD` source table. Refer to the [README](https://github.com/fivetran/dbt_twilio?tab=readme-ov-file#step-4-enablingdisabling-models) for more details
 
 # dbt_twilio v0.3.0
 
