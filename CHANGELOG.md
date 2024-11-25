@@ -1,7 +1,7 @@
 # dbt_twilio v0.4.0
 
 ## Features
-- Added the ability to disable models related to the `USAGE_RECORD` source table. Refer to the [README](https://github.com/fivetran/dbt_twilio?tab=readme-ov-file#step-4-enablingdisabling-models) for more details.
+- Added the ability to disable the `USAGE_RECORD` source table and its downstream fields via variable `using_twilio_usage_record` (default `true`). Refer to the [README](https://github.com/fivetran/dbt_twilio?tab=readme-ov-file#step-4-enablingdisabling-models) for more details.
 
 ## Under the hood
 - Removes references to unused models in `twilio__message_enhanced`.

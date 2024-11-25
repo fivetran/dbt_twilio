@@ -18,6 +18,9 @@ dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']
 
+models:
+  +schema: "twilio_{{ var('directed_schema','dev') }}"
+
 seeds:
   twilio_integration_tests:
     +column_types:
