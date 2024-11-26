@@ -1,4 +1,6 @@
-<p align="center">
+# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_twilio_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,8 +12,6 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-
-# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
 ## What does this dbt package do?
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
