@@ -4,18 +4,6 @@ with messages as (
     from {{ ref('int_twilio__messages') }}
 ),
 
-incoming_phone_number as (
-
-    select *
-    from {{ var('incoming_phone_number')}}
-),
-
-addresses as (
-
-    select *
-    from {{ var('address')}}
-),
-
 {% if var('using_twilio_messaging_service', True) %}
 messaging_service as (
 

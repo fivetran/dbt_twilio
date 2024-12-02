@@ -1,5 +1,5 @@
 name: 'twilio_integration_tests'
-version: '0.3.0'
+version: '0.4.0'
 config-version: 2
 profile: 'integration_tests'
 
@@ -14,10 +14,12 @@ vars:
     twilio_usage_record_identifier:   "twilio_usage_record_data"
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
-
 dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']
+
+models:
+  +schema: "twilio_{{ var('directed_schema','dev') }}"
 
 seeds:
   twilio_integration_tests:

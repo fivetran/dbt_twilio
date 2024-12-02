@@ -19,7 +19,7 @@ dbt deps
 dbt seed --target "$db" --full-refresh
 dbt run --target "$db" --full-refresh
 dbt test --target "$db"
-dbt run --vars '{using_twilio_call: false, using_twilio_messaging_service: false}' --target "$db" --full-refresh
+dbt run --vars '{using_twilio_call: false, using_twilio_messaging_service: false, using_twilio_usage_record: false}' --target "$db" --full-refresh
 dbt test --target "$db"
 
 dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"

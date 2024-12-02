@@ -1,3 +1,11 @@
+# dbt_twilio v0.4.0
+
+## Features
+- Added the ability to disable the `USAGE_RECORD` source table via variable `using_twilio_usage_record` (default `true`). If disabled, downstream this will remove the `total_account_spend` field in `twilio__account_overview`. Refer to the [README](https://github.com/fivetran/dbt_twilio?tab=readme-ov-file#step-4-enablingdisabling-models) for more details. 
+
+## Under the Hood
+- Removes references to unused models in `twilio__message_enhanced`.
+
 # dbt_twilio v0.3.0
 
 > _Note_: This release is a 🚨 **breaking change** 🚨 due to breaking changes introduced in the upstream twilio_source package [v0.3.0](https://github.com/fivetran/dbt_twilio_source/releases/tag/v0.3.0) release, where we explicitly cast the below fields as float types and remove any non-numerical characters. 

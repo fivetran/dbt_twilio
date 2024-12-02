@@ -165,5 +165,5 @@ models:
       - name: price_unit
         description: The currency unit in which the `price` is measured.
       - name: total_account_spend
-        description: The total cost or price incurred by account across all resources used.
+        description: The total cost or price incurred by account across all resources used. Note this will only exist if the `using_twilio_usage_record` variable is set as true (default being true).
 

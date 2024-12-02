@@ -1,4 +1,6 @@
-<p align="center">
+# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_twilio_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,8 +12,6 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-
-# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
 ## What does this dbt package do?
 
 - Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
@@ -51,7 +51,7 @@ Include the following Twilio package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/twilio
-    version: [">=0.3.0", "<0.4.0"]
+    version: [">=0.4.0", "<0.5.0"]
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `Twilio` schema. If this is not where your Twilio data is (for example, if your Twilio schema is named `twilio_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -72,6 +72,8 @@ By default, all variables are assumed to be `true`.
 vars:
   using_twilio_call: False # Disable this if not using call
   using_twilio_messaging_service: False # Disable this if not using messaging_service
+  using_twilio_usage_record: False # Disable this if not using usage_record
+
 ```
 
 ### (Optional) Step 5: Additional configurations
@@ -124,7 +126,7 @@ This dbt package is dependent on the following dbt packages. These dependencies 
 ```yml
 packages:
     - package: fivetran/twilio_source
-      version: [">=0.3.0", "<0.4.0"]
+      version: [">=0.4.0", "<0.5.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
