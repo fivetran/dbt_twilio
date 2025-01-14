@@ -1,3 +1,9 @@
+# dbt_twilio version.version
+
+## Documentation
+- Added Quickstart model counts to README. ([#12](https://github.com/fivetran/dbt_twilio/pull/12))
+- Corrected references to connectors and connections in the README. ([#12](https://github.com/fivetran/dbt_twilio/pull/12))
+
 # dbt_twilio v0.4.0
 
 ## Features

@@ -27,6 +27,8 @@ The following table provides a detailed list of all tables materialized within t
 | [twilio__number_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__number_overview)      | This table has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.                                                                                                         |
 | [twilio__account_overview](https://fivetran.github.io/dbt_twilio/#!/model/model.twilio.twilio__account_overview)      | This table provides aggregate information per each account regarding the Twilio Messages resource. |                                                     |
 
+### Materialized Models
+Each Quickstart transformation job run materializes 20 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
@@ -34,7 +36,7 @@ The following table provides a detailed list of all tables materialized within t
 ### Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran Twilio connector syncing data into your destination.
+- At least one Fivetran Twilio connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 #### Databricks Dispatch Configuration
@@ -64,7 +66,7 @@ vars:
 
 ### Step 4: Enabling/Disabling Models
 
-Your Twilio connector might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
+Your Twilio connection might not sync every table that this package expects, for example if you are not using the Twilio messaging service feature. If your syncs exclude certain tables, it is either because you do not use that functionality in Twilio or have actively excluded some tables from your syncs. In order to enable or disable the relevant tables in the package, you will need to add the following variable(s) to your `dbt_project.yml` file.
 
 By default, all variables are assumed to be `true`.
 
