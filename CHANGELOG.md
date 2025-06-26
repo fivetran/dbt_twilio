@@ -1,6 +1,6 @@
 # dbt_twilio v0.5.0
 
-[PR #13](https://github.com/fivetran/dbt_twilio/pull/13) includes the following updates:
+[PR #14](https://github.com/fivetran/dbt_twilio/pull/14) includes the following updates:
 
 ## Breaking Change for dbt Core < 1.9.6
 
