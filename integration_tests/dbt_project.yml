@@ -22,6 +22,8 @@ models:
   +schema: "twilio_{{ var('directed_schema','dev') }}"
 
 seeds:
+  +docs:
+    show: False
   twilio_integration_tests:
     +column_types:
       to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
@@ -42,3 +44,5 @@ seeds:
 
 flags:
   send_anonymous_usage_stats: False
+
+  use_colors: True
