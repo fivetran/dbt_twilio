@@ -19,4 +19,5 @@ models:
     +schema: twilio
     staging:
       +schema: twilio_source
-      +materialized: view
+      tmp:
+        +materialized: view
