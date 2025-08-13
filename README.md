@@ -14,7 +14,7 @@
 
 ## What does this dbt package do?
 
-- Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
+- Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation).
 
 <!--section=“twilio_transformation_model"-->
 
@@ -53,7 +53,7 @@ Include the following Twilio package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/twilio
-    version: [">=0.5.0", "<0.6.0"]
+    version: [">=1.0.0", "<1.1.0"]
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `Twilio` schema. If this is not where your Twilio data is (for example, if your Twilio schema is named `twilio_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -91,12 +91,10 @@ By default, this package will build the Twilio final models within a schema titl
 
 ...
 models:
-  twilio:
-    +schema: my_new_schema_name # leave blank for just the target_schema
-    intermediate:
-      +schema: my_new_schema_name # leave blank for just the target_schema
-  twilio_source:
-    +schema: my_new_schema_name # leave blank for just the target_schema
+    twilio:
+      +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
+      staging:
+        +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
 > Note that if your profile does not have permissions to create schemas in your warehouse, you can set each `+schema` to blank. The package will then write all tables to your pre-existing target schema.
@@ -127,9 +125,6 @@ This dbt package is dependent on the following dbt packages. These dependencies 
     
 ```yml
 packages:
-    - package: fivetran/twilio_source
-      version: [">=0.5.0", "<0.6.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 

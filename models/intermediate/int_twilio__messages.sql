@@ -1,7 +1,7 @@
 with messages as (
 
     select *
-    from {{ var('message')}}
+    from {{ ref('stg_twilio__message' )}}
 ),
 
 inbound_messages as (

@@ -8,7 +8,7 @@ with messages as (
 messaging_service as (
 
     select *
-    from {{ var('messaging_service')}}
+    from {{ ref('stg_twilio__messaging_service' )}}
 ),
 
 {% endif %}
