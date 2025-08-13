@@ -7,6 +7,9 @@ sources:
 
     loader: Fivetran
 
+    config:
+      loaded_at_field: _fivetran_synced
+
     tables:
       - name: account_history
         identifier: "{{ var('twilio_account_history_identifier', 'account_history' )}}"
@@ -96,7 +99,6 @@ sources:
         identifier: "{{ var('twilio_call_identifier', 'call' )}}"
         description: Each record represents a phone call that occurred or is scheduled to occur.
         config:
-          loaded_at_field: _fivetran_synced
           enabled: "{{ var('using_twilio_call', true) }}"
           freshness:
             warn_after: {count: 72, period: hour}
