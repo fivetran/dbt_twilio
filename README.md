@@ -1,4 +1,4 @@
-# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
+# Twilio dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
 
 <p align="left">
     <a alt="License"
