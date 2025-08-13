@@ -9,7 +9,7 @@ with messages as (
 account_history as (
 
     select * 
-    from {{ var('account_history') }}
+    from {{ ref('stg_twilio__account_history' )}}
 )
 
 {% if var('using_twilio_usage_record', True) %}
@@ -17,7 +17,7 @@ account_history as (
 usage_record as (
 
     select * 
-    from {{ var('usage_record') }}
+    from {{ ref('stg_twilio__usage_record' )}}
 )
 {% endif %}
 

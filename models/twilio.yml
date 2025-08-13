@@ -106,11 +106,6 @@ models:
 
   - name: twilio__account_overview
     description: This model provides aggregate information per each account regarding the Twilio Messages resource.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - account_id
-            - date_day
     columns:
       - name: account_id
         description: The unique identifier for account.
