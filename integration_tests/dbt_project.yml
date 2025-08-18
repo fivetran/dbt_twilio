@@ -1,11 +1,11 @@
 name: 'twilio_integration_tests'
-version: '0.5.0'
+version: '1.0.0'
 config-version: 2
 profile: 'integration_tests'
 
 vars:
   twilio_schema: twilio_integration_tests_1
-  twilio_source:
+  twilio:
     twilio_account_history_identifier:  "twilio_account_history_data"
     twilio_address_identifier:  "twilio_address_data"
     twilio_incoming_phone_number_identifier:  "twilio_incoming_phone_number_data"
@@ -14,6 +14,7 @@ vars:
     twilio_usage_record_identifier:   "twilio_usage_record_data"
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
+
 dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']
@@ -22,6 +23,8 @@ models:
   +schema: "twilio_{{ var('directed_schema','dev') }}"
 
 seeds:
+  +docs:
+    show: False
   twilio_integration_tests:
     +column_types:
       to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
@@ -42,3 +45,5 @@ seeds:
 
 flags:
   send_anonymous_usage_stats: False
+
+  use_colors: True

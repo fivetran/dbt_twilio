@@ -1,8 +1,8 @@
-# Twilio Transformation dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
+# Twilio dbt Package ([Docs](https://fivetran.github.io/dbt_twilio/))
 
 <p align="left">
     <a alt="License"
-        href="https://github.com/fivetran/dbt_twilio_source/blob/main/LICENSE">
+        href="https://github.com/fivetran/dbt_twilio/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
     <a alt="dbt-core">
         <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_,<2.0.0-orange.svg" /></a>
@@ -10,11 +10,14 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
+    <a alt="Fivetran Quickstart Compatible"
+        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## What does this dbt package do?
 
-- Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation) and builds off the output of our [Twilio source package](https://github.com/fivetran/dbt_twilio_source).
+- Produces modeled tables that leverage Twilio data from [Fivetran's connector](https://fivetran.com/docs/applications/twilio) in the format described by [this ERD](https://fivetran.com/docs/applications/twilio#schemainformation).
 
 <!--section=“twilio_transformation_model"-->
 
@@ -53,8 +56,11 @@ Include the following Twilio package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/twilio
-    version: [">=0.5.0", "<0.6.0"]
+    version: [">=1.0.0", "<1.1.0"]
 ```
+
+> All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/twilio_source` in your `packages.yml` since this package has been deprecated.
+
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `Twilio` schema. If this is not where your Twilio data is (for example, if your Twilio schema is named `twilio_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
@@ -91,12 +97,10 @@ By default, this package will build the Twilio final models within a schema titl
 
 ...
 models:
-  twilio:
-    +schema: my_new_schema_name # leave blank for just the target_schema
-    intermediate:
-      +schema: my_new_schema_name # leave blank for just the target_schema
-  twilio_source:
-    +schema: my_new_schema_name # leave blank for just the target_schema
+    twilio:
+      +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
+      staging:
+        +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
 > Note that if your profile does not have permissions to create schemas in your warehouse, you can set each `+schema` to blank. The package will then write all tables to your pre-existing target schema.
@@ -124,12 +128,9 @@ Fivetran offers the ability for you to orchestrate your dbt project through [Fiv
 ## Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. These dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of these dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
-    
+
 ```yml
 packages:
-    - package: fivetran/twilio_source
-      version: [">=0.5.0", "<0.6.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 
@@ -141,7 +142,7 @@ packages:
 ```
 ## How is this package maintained and can I contribute?
 ### Package Maintenance
-The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/twilio_source/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_twilio_source/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
+The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/twilio/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_twilio/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
 
 ### Contributions
 A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions.

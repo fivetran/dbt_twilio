@@ -1,19 +1,23 @@
 name: 'twilio'
-version: '0.5.0'
+version: '1.0.0'
 config-version: 2
 require-dbt-version: [">=1.3.0", "<2.0.0"]
 vars:
   twilio:
-    account_history: "{{ ref('stg_twilio__account_history' )}}"
-    address: "{{ ref('stg_twilio__address' )}}"
-    call: "{{ ref('stg_twilio__call' )}}"
-    incoming_phone_number: "{{ ref('stg_twilio__incoming_phone_number' )}}"
-    message: "{{ ref('stg_twilio__message' )}}"
-    messaging_service: "{{ ref('stg_twilio__messaging_service' )}}"
-    outgoing_caller_id: "{{ ref('stg_twilio__outgoing_caller_id' )}}"
-    usage_record: "{{ ref('stg_twilio__usage_record' )}}"
+    account_history: "{{ source('twilio', 'account_history' )}}"
+    address: "{{ source('twilio', 'address' )}}"
+    call: "{{ source('twilio', 'call' )}}"
+    incoming_phone_number: "{{ source('twilio', 'incoming_phone_number' )}}"
+    message: "{{ source('twilio', 'message' )}}"
+    messaging_service: "{{ source('twilio', 'messaging_service' )}}"
+    outgoing_caller_id: "{{ source('twilio', 'outgoing_caller_id' )}}"
+    usage_record: "{{ source('twilio', 'usage_record' )}}"
 
 models:
   twilio:
     +materialized: table
     +schema: twilio
+    staging:
+      +schema: twilio_source
+      tmp:
+        +materialized: view
