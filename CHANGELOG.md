@@ -1,5 +1,7 @@
 # dbt_twilio v1.1.0
 
+[PR #18](https://github.com/fivetran/dbt_twilio/pull/18) includes the following updates:
+
 ## Schema/Data Change
 **1 total change • 0 possible breaking changes**
 
