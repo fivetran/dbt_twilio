@@ -7,6 +7,7 @@ with messages as (
 inbound_messages as (
 
     select
+        source_relation,
         account_id,
         body,
         {{ dbt.length("body") }} as num_characters,
@@ -34,6 +35,7 @@ inbound_messages as (
 outbound_messages as (
 
     select
+        source_relation,
         account_id,
         body,
         {{ dbt.length("body") }} as num_characters,

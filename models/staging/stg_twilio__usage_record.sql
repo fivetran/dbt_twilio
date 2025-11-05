@@ -15,12 +15,14 @@ fields as (
                 staging_columns=get_usage_record_columns()
             )
         }}
+        {{ twilio.apply_source_relation() }}
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation,
         _fivetran_synced,
         account_id,
         as_of,

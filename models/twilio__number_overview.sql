@@ -7,6 +7,7 @@ with messages as (
 )
 
 select
+    source_relation,
     phone_number,
     count(case
         when direction like '%outbound%'
@@ -23,9 +24,9 @@ select
         then message_id end)
         as total_{{m}}_messages,
     {% endfor %}
-    
+
     count(message_id) as total_messages,
     sum(price) as total_spend
 
 from messages
-group by 1
+group by 1, 2

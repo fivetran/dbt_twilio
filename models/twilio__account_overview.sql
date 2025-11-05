@@ -22,6 +22,7 @@ usage_record as (
 {% endif %}
 
 select
+    messages.source_relation,
     messages.account_id,
     account_history.friendly_name as account_name,
     account_history.status as account_status,
@@ -57,9 +58,11 @@ from messages
 {% if var('using_twilio_usage_record', True) %}
 left join usage_record
     on messages.account_id = usage_record.account_id
+    and messages.source_relation = usage_record.source_relation
     and messages.date_day = usage_record.start_date
 {% endif %}
 left join account_history
     on messages.account_id = account_history.account_id
+    and messages.source_relation = account_history.source_relation
 
-{{ dbt_utils.group_by(n=8) }}
+{{ dbt_utils.group_by(n=9) }}

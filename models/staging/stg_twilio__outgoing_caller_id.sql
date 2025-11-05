@@ -13,12 +13,14 @@ fields as (
                 staging_columns=get_outgoing_caller_id_columns()
             )
         }}
+        {{ twilio.apply_source_relation() }}
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation,
         _fivetran_synced,
         created_at,
         friendly_name,

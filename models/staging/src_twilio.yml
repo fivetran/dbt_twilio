@@ -8,6 +8,7 @@ sources:
     loader: Fivetran
 
     config:
+      enabled: "{{ var('twilio_sources', []) == [] }}"
       loaded_at_field: _fivetran_synced
 
     tables:
@@ -99,7 +100,7 @@ sources:
         identifier: "{{ var('twilio_call_identifier', 'call' )}}"
         description: Each record represents a phone call that occurred or is scheduled to occur.
         config:
-          enabled: "{{ var('using_twilio_call', true) }}"
+          enabled: "{{ var('using_twilio_call', true) and var('twilio_sources', []) == [] }}"
           freshness:
             warn_after: {count: 72, period: hour}
             error_after: {count: 168, period: hour}
@@ -346,9 +347,9 @@ sources:
         
       - name: messaging_service
         identifier: "{{ var('twilio_messaging_service_identifier', 'messaging_service' )}}"
-        description: Each record represents information about each messaging service. You can think of messaging services as a higher-level “bundling” of messaging functionality around a common set of senders, features, and configuration
+        description: Each record represents information about each messaging service. You can think of messaging services as a higher-level "bundling" of messaging functionality around a common set of senders, features, and configuration
         config:
-          enabled: "{{ var('using_twilio_messaging_service', true) }}"
+          enabled: "{{ var('using_twilio_messaging_service', true) and var('twilio_sources', []) == [] }}"
         columns:
           - name: _fivetran_synced
             description: Timestamp of when fivetran synced a record. 
@@ -463,7 +464,7 @@ sources:
         identifier: "{{ var('twilio_usage_record_identifier', 'usage_record' )}}"
         description: Each record provides details about resource consumption in Twilio.
         config:
-          enabled: "{{ var('using_twilio_usage_record', true) }}"
+          enabled: "{{ var('using_twilio_usage_record', true) and var('twilio_sources', []) == [] }}"
           freshness:
             warn_after: {count: 72, period: hour}
             error_after: {count: 168, period: hour}
