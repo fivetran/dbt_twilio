@@ -15,7 +15,6 @@ vars:
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
   
-  consistency_test_exclude_metrics: ['total_spend'] 
 
 dispatch:
   - macro_namespace: dbt_utils
