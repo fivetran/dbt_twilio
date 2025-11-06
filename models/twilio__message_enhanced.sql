@@ -16,6 +16,7 @@ messaging_service as (
 final as (
 
     select
+        messages.source_relation,
         messages.message_id,
         messages.messaging_service_id,
         messages.timestamp_sent,
@@ -39,11 +40,11 @@ final as (
         messages.updated_at
 
         {% if var('using_twilio_messaging_service', True) %}
-        , 
-        messaging_service.friendly_name, 
-        messaging_service.inbound_method, 
-        messaging_service.us_app_to_person_registered, 
-        messaging_service.use_inbound_webhook_on_number, 
+        ,
+        messaging_service.friendly_name,
+        messaging_service.inbound_method,
+        messaging_service.us_app_to_person_registered,
+        messaging_service.use_inbound_webhook_on_number,
         messaging_service.use_case
 
         {% endif %}
@@ -54,6 +55,7 @@ final as (
     {% if var('using_twilio_messaging_service', True) %}
     left join messaging_service
         on messages.messaging_service_id = messaging_service.messaging_service_id
+        and messages.source_relation = messaging_service.source_relation
 
     {% endif %}
 

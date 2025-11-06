@@ -4,6 +4,9 @@ models:
   - name: stg_twilio__account_history
     description: Table with information about each of your accounts.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
 
@@ -37,8 +40,11 @@ models:
 
 
   - name: stg_twilio__address
-    description: A table containing records about your or your customer’s physical location within a country
+    description: A table containing records about your or your customer's physical location within a country
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
 
@@ -46,7 +52,6 @@ models:
         description: >
           The unique identifier for the address record.
         tests:
-          - unique
           - not_null
         
       - name: account_id
@@ -105,6 +110,9 @@ models:
   - name: stg_twilio__call
     description: A table with information about each phone call that occurred or is scheduled to occur.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
 
@@ -112,7 +120,6 @@ models:
         description: >
           The unique identifier for the Call resource.
         tests:
-          - unique
           - not_null
         
       - name: account_id
@@ -211,6 +218,9 @@ models:
   - name: stg_twilio__incoming_phone_number
     description: A table with information about each Twilio phone number provisioned from Twilio, ported or hosted to Twilio
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
 
@@ -218,7 +228,6 @@ models:
         description: >
           The unique identifier for this phone number resource.
         tests:
-          - unique
           - not_null
         
       - name: account_id
@@ -285,6 +294,9 @@ models:
   - name: stg_twilio__message
     description: A table with information about each individual outbound or inbound message.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
 
@@ -345,8 +357,11 @@ models:
 
 
   - name: stg_twilio__messaging_service
-    description: A table with information about each messaging service. You can think of messaging services as a higher-level “bundling” of messaging functionality around a common set of senders, features, and configuration
+    description: A table with information about each messaging service. You can think of messaging services as a higher-level "bundling" of messaging functionality around a common set of senders, features, and configuration
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_deleted
         description: Whether the record has been deleted
 
@@ -445,13 +460,15 @@ models:
   - name: stg_twilio__outgoing_caller_id
     description: A table with information on each single verified number that may be used as a caller ID when making outgoing calls via the REST API and within the TwiML <Dial> verb.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record.
 
       - name: outgoing_caller_id
         description: The unique string that identifies this resource.
         tests:
-          - unique
           - not_null
         
       - name: created_at
@@ -470,6 +487,9 @@ models:
   - name: stg_twilio__usage_record
     description: A table with information about resource consumption in Twilio.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: _fivetran_synced
         description: timestamp of when fivetran synced a record. 
         

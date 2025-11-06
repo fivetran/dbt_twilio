@@ -1,3 +1,24 @@
+# dbt_twilio v1.1.0
+
+[PR #18](https://github.com/fivetran/dbt_twilio/pull/18) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 0 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | ----| --- | ----- |
+| All models | New column | | `source_relation` | Identifies the source connection when using multiple Twilio connections |
+
+## Feature Update
+- **Union Data Functionality**: This release supports running the package on multiple Twilio source connections. See the [README](https://github.com/fivetran/dbt_twilio/tree/main?tab=readme-ov-file#step-3-define-database-and-schema-variables) for details on how to leverage this feature.
+
+## Tests Update
+- Removes uniqueness tests. The new unioning feature requires combination-of-column tests to consider the new `source_relation` column in addition to the existing primary key, but this is not supported across dbt versions.
+  - These tests will be reintroduced once a version-agnostic solution is available.
+
+## Under the Hood
+- Added consistency validation tests for all end models (`twilio__account_overview`, `twilio__message_enhanced`, `twilio__number_overview`) to compare results between dev and prod schemas.
+
 # dbt_twilio v1.0.0
 
 [PR #17](https://github.com/fivetran/dbt_twilio/pull/17) includes the following updates:

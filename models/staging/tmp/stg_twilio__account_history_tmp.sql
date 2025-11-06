@@ -1,2 +1,7 @@
-select {{ dbt_utils.star(source('twilio', 'account_history')) }}
-from {{ var('account_history') }}
+{{
+    twilio.twilio_union_connections(
+        connection_dictionary='twilio_sources',
+        single_source_name='twilio',
+        single_table_name='account_history'
+    )
+}}

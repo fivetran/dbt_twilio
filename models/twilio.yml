@@ -4,10 +4,11 @@ models:
   - name: twilio__number_overview
     description: This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: phone_number
         description: The phone number that you have had used messaging with.
         tests:
-          - unique
           - not_null
       - name: total_outbound_messages
         description: Total number of outbound messages for this phone number. 
@@ -44,12 +45,13 @@ models:
 
 
   - name: twilio__message_enhanced
-    description: This model provides additional information of every message sent or received. 
+    description: This model provides additional information of every message sent or received.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: message_id
         description: The unique identifier for the message.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: The unique identifier of the Account that sent or received the message.
@@ -107,6 +109,9 @@ models:
   - name: twilio__account_overview
     description: This model provides aggregate information per each account regarding the Twilio Messages resource.
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+
       - name: account_id
         description: The unique identifier for account.
         tests:

@@ -1,10 +1,10 @@
 name: 'twilio_integration_tests'
-version: '1.0.0'
+version: '1.1.0'
 config-version: 2
 profile: 'integration_tests'
 
 vars:
-  twilio_schema: twilio_integration_tests_1
+  twilio_schema: twilio_integration_tests
   twilio:
     twilio_account_history_identifier:  "twilio_account_history_data"
     twilio_address_identifier:  "twilio_address_data"
@@ -14,6 +14,7 @@ vars:
     twilio_usage_record_identifier:   "twilio_usage_record_data"
     twilio_call_identifier:   "twilio_call_data"
     twilio_message_identifier:   "twilio_message_data"
+  
 
 dispatch:
   - macro_namespace: dbt_utils

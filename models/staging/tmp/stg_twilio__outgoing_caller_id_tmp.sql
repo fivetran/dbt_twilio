@@ -1,2 +1,7 @@
-select {{ dbt_utils.star(source('twilio', 'outgoing_caller_id')) }}
-from {{ var('outgoing_caller_id') }}
+{{
+    twilio.twilio_union_connections(
+        connection_dictionary='twilio_sources',
+        single_source_name='twilio',
+        single_table_name='outgoing_caller_id'
+    )
+}}

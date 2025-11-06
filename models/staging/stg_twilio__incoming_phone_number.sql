@@ -13,15 +13,17 @@ fields as (
                 staging_columns=get_incoming_phone_number_columns()
             )
         }}
+        {{ twilio.apply_source_relation() }}
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation,
         _fivetran_synced,
         account_id,
-        cast(address_id as {{ dbt.type_string() }}) as address_id, 
+        cast(address_id as {{ dbt.type_string() }}) as address_id,
         capabilities_mms,
         capabilities_sms,
         capabilities_voice,
