@@ -1,7 +1,7 @@
 database_key: twilio_database
 schema_key: twilio_schema
 
-dbt_versions: ">=1.3.0 <2.0.0"
+dbt_versions: ">=1.3.0 <3.0.0"
 
 table_variables:
   using_twilio_messaging_service:
