@@ -1,3 +1,15 @@
+# dbt_twilio v1.3.0
+
+[PR #20](https://github.com/fivetran/dbt_twilio/pull/20) includes the following updates:
+
+## Documentation
+- Updates README with standardized Fivetran formatting
+
+## Under the Hood
+- In the `.quickstart.yml` file:
+  - Adds `table_variables` for relevant sources to prevent missing sources from blocking downstream Quickstart models.
+  - Adds `supported_vars` for Quickstart UI customization,
+
 # dbt_twilio v1.2.0
 
 [PR #19](https://github.com/fivetran/dbt_twilio/pull/19) includes the following updates:

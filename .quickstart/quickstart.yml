@@ -11,6 +11,13 @@ table_variables:
   using_twilio_usage_record:
     - usage_record
 
+  _fivetran_quickstart_address:
+    - address
+  _fivetran_quickstart_incoming_phone_number:
+    - incoming_phone_number
+  _fivetran_quickstart_outgoing_caller_id:
+    - outgoing_caller_id
+
 
 destination_configurations:
   databricks:
