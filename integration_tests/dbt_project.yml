@@ -21,6 +21,9 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 
 models:
+  +persist_docs:
+    relation: true
+    columns: "{{ false if target.type in ('databricks') else true }}"
   +schema: "twilio_{{ var('directed_schema','dev') }}"
 
 seeds:
