@@ -30,22 +30,37 @@ seeds:
   +docs:
     show: False
   twilio_integration_tests:
-    +column_types:
-      to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
-      from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
-      forwarded_from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
-      phone_number: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
-      friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
     twilio_call_data:
       +enabled: "{{ true if target.type != 'snowflake' else false }}"
+      +column_types:
+        to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+        from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+        forwarded_from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
     twilio_message_data:
       +enabled: "{{ true if target.type != 'snowflake' else false }}"
+      +column_types:
+        to: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+        from: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
     twilio_message_data_snowflake:
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
       +alias: twilio_message_data
     twilio_call_data_snowflake:
       +enabled: "{{ true if target.type == 'snowflake' else false }}"
       +alias: twilio_call_data
+    twilio_address_data:
+      +column_types:
+        friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+    twilio_incoming_phone_number_data:
+      +column_types:
+        phone_number: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+        friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+    twilio_messaging_service_data:
+      +column_types:
+        friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+    twilio_outgoing_caller_id_data:
+      +column_types:
+        phone_number: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
+        friendly_name: "{{ 'string' if target.type in ['bigquery', 'spark', 'databricks'] else 'varchar' }}"
 
 flags:
   send_anonymous_usage_stats: False
