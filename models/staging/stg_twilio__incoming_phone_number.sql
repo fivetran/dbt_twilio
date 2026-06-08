@@ -13,7 +13,7 @@ fields as (
                 staging_columns=get_incoming_phone_number_columns()
             )
         }}
-        {{ twilio.apply_source_relation() }}
+        {{ fivetran_utils.apply_source_relation(package_name='twilio') }}
     from base
 ),
 

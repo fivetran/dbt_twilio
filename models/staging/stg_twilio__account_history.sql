@@ -13,7 +13,7 @@ fields as (
                 staging_columns=get_account_history_columns()
             )
         }}
-        {{ twilio.apply_source_relation() }}
+        {{ fivetran_utils.apply_source_relation(package_name='twilio') }}
     from base
 ),
 
@@ -29,7 +29,7 @@ final as (
         status,
         type,
         updated_at,
-        row_number() over (partition by id {{ twilio.partition_by_source_relation() }} order by updated_at desc) = 1 as is_most_recent_record
+        row_number() over (partition by id {{ fivetran_utils.partition_by_source_relation(package_name='twilio') }} order by updated_at desc) = 1 as is_most_recent_record
     from fields
 )
 
