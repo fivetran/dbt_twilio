@@ -13,7 +13,7 @@ fields as (
                 staging_columns=get_address_columns()
             )
         }}
-        {{ twilio.apply_source_relation() }}
+        {{ fivetran_utils.apply_source_relation(package_name='twilio') }}
     from base
 ),
 

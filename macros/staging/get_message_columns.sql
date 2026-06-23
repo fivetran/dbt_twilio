@@ -19,7 +19,7 @@
     {"name": "updated_at", "datatype": dbt.type_timestamp()},
 ] %}
 
-{% if target.type == 'snowflake' %}
+{% if target.type == 'snowflake' and not var('fivetran_using_source_casing', false) %}
     {{ columns.append({"name": "FROM", "datatype": dbt.type_string(), "quote": True, "alias": "message_from"}) }}
     {{ columns.append({"name": "TO", "datatype": dbt.type_string(), "quote": True, "alias": "message_to"}) }}
 {% else %}

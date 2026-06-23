@@ -35,7 +35,7 @@ sources:
             
       - name: address
         identifier: "{{ var('twilio_address_identifier', 'address' )}}"
-        description: Each record represents an Address instance that represents your or your customer’s physical location within a country
+        description: Each record represents an Address instance that represents your or your customer's physical location within a country
         columns:
           - name: _fivetran_synced
             description: Timestamp of when fivetran synced a record. 
@@ -507,5 +507,3 @@ sources:
 
           - name: usage_unit
             description: The units in which usage is measured, such as minutes for calls or messages for SMS.
-        
-
