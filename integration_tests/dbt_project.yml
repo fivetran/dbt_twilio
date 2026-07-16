@@ -29,7 +29,7 @@ models:
 seeds:
   +docs:
     show: False
-  +quote_columns: "{{ target.type in ('redshift','postgres') or var('fivetran_using_source_casing', false) }}"
+  +quote_columns: "{{ target.type in ('redshift','postgres','duckdb') or var('fivetran_using_source_casing', false) }}"
   twilio_integration_tests:
     twilio_call_data:
       +enabled: "{{ target.type != 'snowflake' or var('fivetran_using_source_casing', false) }}"
