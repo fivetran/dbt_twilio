@@ -1,3 +1,11 @@
+# dbt_twilio v1.4.1
+
+[PR #25](https://github.com/fivetran/dbt_twilio/pull/25) includes the following updates:
+
+## Feature Updates
+- Adds DuckDB as a supported destination.
+
+
 # dbt_twilio v1.4.0
 
 [PR #23](https://github.com/fivetran/dbt_twilio/pull/23) includes the following updates:
