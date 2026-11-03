@@ -10,6 +10,7 @@ account_history as (
 
     select * 
     from {{ ref('stg_twilio__account_history' )}}
+    where is_most_recent_record
 )
 
 {% if var('using_twilio_usage_record', True) %}
