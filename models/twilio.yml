@@ -3,6 +3,12 @@ version: 2
 models:
   - name: twilio__number_overview
     description: This model has aggregate messaging information for each phone number level, such as total messages, total inbound messages, total messages by status, and total spend.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - phone_number
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -46,6 +52,12 @@ models:
 
   - name: twilio__message_enhanced
     description: This model provides additional information of every message sent or received.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - message_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -108,6 +120,13 @@ models:
 
   - name: twilio__account_overview
     description: This model provides aggregate information per each account regarding the Twilio Messages resource.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - account_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"

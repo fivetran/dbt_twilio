@@ -3,6 +3,13 @@ version: 2
 models:
   - name: stg_twilio__account_history
     description: Table with information about each of your accounts.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - account_id
+              - updated_at
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -41,6 +48,12 @@ models:
 
   - name: stg_twilio__address
     description: A table containing records about your or your customer's physical location within a country
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - address_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -109,6 +122,12 @@ models:
 
   - name: stg_twilio__call
     description: A table with information about each phone call that occurred or is scheduled to occur.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - call_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -217,6 +236,12 @@ models:
 
   - name: stg_twilio__incoming_phone_number
     description: A table with information about each Twilio phone number provisioned from Twilio, ported or hosted to Twilio
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - incoming_phone_number_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -293,6 +318,12 @@ models:
 
   - name: stg_twilio__message
     description: A table with information about each individual outbound or inbound message.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - message_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -358,6 +389,12 @@ models:
 
   - name: stg_twilio__messaging_service
     description: A table with information about each messaging service. You can think of messaging services as a higher-level "bundling" of messaging functionality around a common set of senders, features, and configuration
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - messaging_service_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -459,6 +496,12 @@ models:
 
   - name: stg_twilio__outgoing_caller_id
     description: A table with information on each single verified number that may be used as a caller ID when making outgoing calls via the REST API and within the TwiML <Dial> verb.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - outgoing_caller_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -486,6 +529,15 @@ models:
 
   - name: stg_twilio__usage_record
     description: A table with information about resource consumption in Twilio.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - account_id
+              - category
+              - start_date
+              - end_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
