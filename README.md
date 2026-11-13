@@ -15,7 +15,7 @@ This dbt package transforms data from Fivetran's Twilio connector into analytics
   - [DAG](https://fivetran.github.io/dbt_twilio/#!/overview?g_v=1)
   - [Changelog](https://github.com/fivetran/dbt_twilio/blob/main/CHANGELOG.md)
 - dbt Core™ supported versions
-  - `>=1.3.0, <3.0.0`
+  - `>=1.10.0, <3.0.0`
 
 ## What does this dbt package do?
 This package enables you to produce modeled tables that leverage Twilio data. It creates enriched models with metrics focused on messaging information and account-level aggregations.
@@ -61,7 +61,7 @@ Include the following Twilio package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/twilio
-    version: [">=1.4.0", "<1.5.0"]
+    version: [">=1.5.0", "<1.6.0"]
 ```
 
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/twilio_source` in your `packages.yml` since this package has been deprecated.
