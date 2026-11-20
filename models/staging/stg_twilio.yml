@@ -19,7 +19,7 @@ models:
 
       - name: account_id
         description: The unique identifier for the account history record.
-        tests:
+        data_tests:
           - not_null
 
       - name: created_at
@@ -39,7 +39,7 @@ models:
 
       - name: updated_at
         description: The date and time when the account history record was last updated.
-        tests:
+        data_tests:
           - not_null
 
       - name: is_most_recent_record
@@ -64,7 +64,7 @@ models:
       - name: address_id
         description: >
           The unique identifier for the address record.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -138,7 +138,7 @@ models:
       - name: call_id
         description: >
           The unique identifier for the Call resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -252,7 +252,7 @@ models:
       - name: incoming_phone_number_id
         description: >
           The unique identifier for this phone number resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -333,12 +333,12 @@ models:
 
       - name: message_id
         description: The unique identifier for the message.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
         description: The unique identifier of the Account that sent or received the message.
-        tests:
+        data_tests:
           - not_null
 
       - name: body
@@ -405,7 +405,7 @@ models:
       - name: messaging_service_id
         description: >
           The unique identifier of the messaging service.
-        tests:
+        data_tests:
           - not_null
 
       - name: _fivetran_synced
@@ -414,7 +414,7 @@ models:
       - name: account_id
         description: >
           The unique identifier of the account that owns the messaging service.
-        tests:
+        data_tests:
           - not_null
 
       - name: area_code_geomatch
@@ -511,7 +511,7 @@ models:
 
       - name: outgoing_caller_id
         description: The unique string that identifies this resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: created_at
@@ -547,7 +547,7 @@ models:
         
       - name: account_id
         description: The unique identifier of the account associated with the usage record.
-        tests:
+        data_tests:
           - not_null
 
       - name: as_of
@@ -555,7 +555,7 @@ models:
 
       - name: category
         description: The category of usage.
-        tests:
+        data_tests:
           - not_null
 
       - name: count
@@ -569,7 +569,7 @@ models:
 
       - name: end_date
         description: The end date of the usage period for the record.
-        tests:
+        data_tests:
           - not_null
 
       - name: price
@@ -580,7 +580,7 @@ models:
 
       - name: start_date
         description: The first date for which usage is included in this UsageRecord. The date is specified in GMT and formatted as YYYY-MM-DD.
-        tests:
+        data_tests:
           - not_null
 
       - name: usage

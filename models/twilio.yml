@@ -14,7 +14,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: phone_number
         description: The phone number that you have had used messaging with.
-        tests:
+        data_tests:
           - not_null
       - name: total_outbound_messages
         description: Total number of outbound messages for this phone number. 
@@ -63,7 +63,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: message_id
         description: The unique identifier for the message.
-        tests:
+        data_tests:
           - not_null
       - name: account_id
         description: The unique identifier of the Account that sent or received the message.
@@ -133,7 +133,7 @@ models:
 
       - name: account_id
         description: The unique identifier for account.
-        tests:
+        data_tests:
           - not_null
       - name: account_name
         description: Friendly name associated with the account.
@@ -143,7 +143,7 @@ models:
         description: The type or category of the account.
       - name: date_day
         description: The day of the message activity.
-        tests:
+        data_tests:
           - not_null
       - name: date_week
         description: The week of the message activity.
