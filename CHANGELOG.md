@@ -1,3 +1,11 @@
+# dbt_twilio v1.5.0
+
+[PR #29](https://github.com/fivetran/dbt_twilio/pull/29) includes the following updates:
+
+## Feature Update
+- **Breaking change**: Raises the minimum dbt version to 1.10.0.
+- Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_twilio/issues/new/choose).
+
 # dbt_twilio v1.4.1
 
 [PR #25](https://github.com/fivetran/dbt_twilio/pull/25) includes the following updates:

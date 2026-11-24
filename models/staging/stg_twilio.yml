@@ -3,6 +3,13 @@ version: 2
 models:
   - name: stg_twilio__account_history
     description: Table with information about each of your accounts.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - account_id
+              - updated_at
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -12,7 +19,7 @@ models:
 
       - name: account_id
         description: The unique identifier for the account history record.
-        tests:
+        data_tests:
           - not_null
 
       - name: created_at
@@ -32,7 +39,7 @@ models:
 
       - name: updated_at
         description: The date and time when the account history record was last updated.
-        tests:
+        data_tests:
           - not_null
 
       - name: is_most_recent_record
@@ -41,6 +48,12 @@ models:
 
   - name: stg_twilio__address
     description: A table containing records about your or your customer's physical location within a country
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - address_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -51,7 +64,7 @@ models:
       - name: address_id
         description: >
           The unique identifier for the address record.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -109,6 +122,12 @@ models:
 
   - name: stg_twilio__call
     description: A table with information about each phone call that occurred or is scheduled to occur.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - call_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -119,7 +138,7 @@ models:
       - name: call_id
         description: >
           The unique identifier for the Call resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -217,6 +236,12 @@ models:
 
   - name: stg_twilio__incoming_phone_number
     description: A table with information about each Twilio phone number provisioned from Twilio, ported or hosted to Twilio
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - incoming_phone_number_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -227,7 +252,7 @@ models:
       - name: incoming_phone_number_id
         description: >
           The unique identifier for this phone number resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
@@ -293,6 +318,12 @@ models:
 
   - name: stg_twilio__message
     description: A table with information about each individual outbound or inbound message.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - message_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -302,12 +333,12 @@ models:
 
       - name: message_id
         description: The unique identifier for the message.
-        tests:
+        data_tests:
           - not_null
         
       - name: account_id
         description: The unique identifier of the Account that sent or received the message.
-        tests:
+        data_tests:
           - not_null
 
       - name: body
@@ -358,6 +389,12 @@ models:
 
   - name: stg_twilio__messaging_service
     description: A table with information about each messaging service. You can think of messaging services as a higher-level "bundling" of messaging functionality around a common set of senders, features, and configuration
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - messaging_service_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -368,7 +405,7 @@ models:
       - name: messaging_service_id
         description: >
           The unique identifier of the messaging service.
-        tests:
+        data_tests:
           - not_null
 
       - name: _fivetran_synced
@@ -377,7 +414,7 @@ models:
       - name: account_id
         description: >
           The unique identifier of the account that owns the messaging service.
-        tests:
+        data_tests:
           - not_null
 
       - name: area_code_geomatch
@@ -459,6 +496,12 @@ models:
 
   - name: stg_twilio__outgoing_caller_id
     description: A table with information on each single verified number that may be used as a caller ID when making outgoing calls via the REST API and within the TwiML <Dial> verb.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - outgoing_caller_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -468,7 +511,7 @@ models:
 
       - name: outgoing_caller_id
         description: The unique string that identifies this resource.
-        tests:
+        data_tests:
           - not_null
         
       - name: created_at
@@ -486,6 +529,15 @@ models:
 
   - name: stg_twilio__usage_record
     description: A table with information about resource consumption in Twilio.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - account_id
+              - category
+              - start_date
+              - end_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -495,7 +547,7 @@ models:
         
       - name: account_id
         description: The unique identifier of the account associated with the usage record.
-        tests:
+        data_tests:
           - not_null
 
       - name: as_of
@@ -503,7 +555,7 @@ models:
 
       - name: category
         description: The category of usage.
-        tests:
+        data_tests:
           - not_null
 
       - name: count
@@ -517,7 +569,7 @@ models:
 
       - name: end_date
         description: The end date of the usage period for the record.
-        tests:
+        data_tests:
           - not_null
 
       - name: price
@@ -528,7 +580,7 @@ models:
 
       - name: start_date
         description: The first date for which usage is included in this UsageRecord. The date is specified in GMT and formatted as YYYY-MM-DD.
-        tests:
+        data_tests:
           - not_null
 
       - name: usage
